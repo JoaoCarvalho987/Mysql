@@ -1,0 +1,94 @@
+create database biblio;
+
+use biblio;
+
+CREATE TABLE livro (
+CodLi int PRIMARY KEY auto_increment,
+genero varchar(255),
+editora varchar(255),
+autor varchar(255),
+titulo varchar(255),
+lancamento varchar(5),
+edicao varchar(255)
+);
+
+CREATE TABLE leitor (
+CodCli int PRIMARY KEY auto_increment,
+dataNasc date,
+generoFav varchar(255),
+CPF varchar(255) unique,
+email varchar(255) unique,
+nome varchar(255),
+RG varchar(255) unique
+);
+
+CREATE TABLE bibliotecario (
+CodBi int PRIMARY KEY auto_increment,
+CEP varchar(255),
+numero varchar(255),
+bairro varchar(255),
+cidade varchar(255),
+estado char(2),
+complemento varchar(255),
+CPF varchar(255) unique,
+dataNasc date,
+telefone varchar(255),
+RG varchar(255) unique,
+nome varchar(255),
+genero varchar(255),
+email varchar(255) unique
+);
+
+CREATE TABLE emprestimo (
+codEmprestimo int PRIMARY KEY auto_increment,
+dataDevolucao date,
+dataEmprestimo date,
+CodLi int,
+CodCli int,
+CodBi int,
+FOREIGN KEY(CodLi) REFERENCES livro (CodLi),
+FOREIGN KEY(CodCli) REFERENCES leitor (CodCli),
+FOREIGN KEY(CodBi) REFERENCES bibliotecario (CodBi)
+);
+
+insert into bibliotecario (estado, nome, email, CPF, dataNasc, cidade, telefone) values
+('SP','Fernando Machado ','fernando@gmail.com','72462404031','2000-01-17','São Bernardo do Campo','978426357'),
+('SP','Gabriel Oliveira','gabriel@gmail.com','23075788031','1992-04-16','Ribeirão Pires','984231685');
+
+insert into leitor (dataNasc, generoFav, CPF, email, nome, RG) values
+('2004-05-28', 'Terror', '54046113081', 'Ruan@gmail.com','Ruan Theo Carlos Lopes','126550475'),
+('2000-10-08', 'Romance','39113658026','Sonia@gmail.com','Sônia Joana Assunção','391615221'),
+('2001-10-03', 'Filosofia','55016518076','Priscila@gmail.com','Priscila Sophia','112340933'),
+('2004-02-10', 'Terror','62305034091','Renan@gmail.com','Renan Lucas','348643111'),
+('2001-12-31', 'Mistério','16053368075','Alana@gmail.com','Alana Cavalcante','219044466'),
+('1999-05-12', 'Drama', '04648420004','Antonio@gmail.com','Antonio Marcos','441905043'),
+('2006-11-02', 'Ficção cientifica', '52277420069','Cesar@gmail.com','César Erick','472785163'),
+('2002-09-14', 'Romance', '37283979034','Maite@gmail.com','Maitê Laura','469517219'),
+('2004-04-23', 'Drama','56741430059','Luana@gmail.com','Luana Cláudia','252954932'),
+('2001-10-10', 'Ficção cientifica','98931927061','Fernando@gmail.com','Fernando Victor','333781788');
+
+insert into livro (genero, editora, autor, titulo, lancamento, edicao) values
+('Mistério','Darkside','Kerri Maniscalco','Jack o estripador: Rastro de sangue','2018','1'),
+('Romance','Penguin','William Shakespeare','Hamlet','2015','1'),
+('Terror','Darkside','Allan Poe','Medo clássico','2017','1'),
+('Ficção cientifica','Darkside','Madaleine Engle','Uma dobra no tempo','2018','1'),
+('Romance','Bertrand Brasil','Isabel Allende','Longa pétala do mar','2019','1'),
+('Terror','Suma','Stephen King','Outsider','2018','1'),
+('Terror','Suma','Stephan King','Doutor Sono','2014','1'),
+('Drama','L&PM','William Shakespeare','A tempestade','2002','1'),
+('Filosofia','Record','Albert Camus','O mito de sísifo','2010','1'),
+('Filosofia','Record','Albert Camus','O estrangeiro','1979','128');
+
+insert into emprestimo (CodLi, CodCli, CodBi, dataEmprestimo, dataDevolucao) values
+(1,2,1,'2020-05-20','2020-05-28'),
+(2,3,1,'2020-01-13','2020-02-01'),
+(3,8,1,'2020-11-20','2020-12-08'),
+(4,7,2,'2020-06-21','2020-07-20'),
+(5,10,1,'2020-02-08','2020-03-18'),
+(6,9,1,'2020-05-17','2020-05-26'),
+(7,1,2,'2020-01-14','2020-01-27'),
+(8,4,2,'2020-09-04','2020-09-12'),
+(9,5,2,'2020-05-08','2020-06-18'),
+(10,6,2,'2020-02-14','2020-02-28');
+
+
