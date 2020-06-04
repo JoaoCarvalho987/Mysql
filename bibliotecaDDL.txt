@@ -53,7 +53,8 @@ FOREIGN KEY(CodBi) REFERENCES bibliotecario (CodBi)
 
 insert into bibliotecario (estado, nome, email, CPF, dataNasc, cidade, telefone) values
 ('SP','Fernando Machado ','fernando@gmail.com','72462404031','2000-01-17','São Bernardo do Campo','978426357'),
-('SP','Gabriel Oliveira','gabriel@gmail.com','23075788031','1992-04-16','Ribeirão Pires','984231685');
+('SP','Gabriel Oliveira','gabriel@gmail.com','23075788031','1992-04-16','Ribeirão Pires','984231685'),
+('SP','Heitor Rodriguez','Heitor@gmail.com','45895231475','1972-08-24','São Paulo','921496324');
 
 insert into leitor (dataNasc, generoFav, CPF, email, nome, RG) values
 ('2004-05-28', 'Terror', '54046113081', 'Ruan@gmail.com','Ruan Theo Carlos Lopes','126550475'),
